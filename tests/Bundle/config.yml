@@ -1,0 +1,16 @@
+framework:
+    validation: true
+    translator: true
+    http_client: true
+
+    cache:
+        # Unique name of your app: used to compute stable namespaces for cache keys.
+        prefix_seed: rollerworks
+
+        pools:
+            rollerworks.cache.public_prefix_db:
+                adapter: cache.adapter.array
+                default_lifetime: 604800 # one week, the cache should be automatically refreshed
+
+rollerworks_pdb:
+    manager: test

@@ -1,0 +1,56 @@
+{
+    "name": "rollerworks/x509-validator-symfony",
+    "description": "X509Validator Constraints for Symfony",
+    "license": "MIT",
+    "type": "library",
+    "keywords": [],
+    "authors": [
+        {
+            "name": "Sebastiaan Stok",
+            "email": "s.stok@rollerscapes.net"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "rollerworks/x509-validator": "^0.2.1",
+        "symfony/config": "^6.4 || ^7.0",
+        "symfony/translation": "^6.4 || ^7.0",
+        "symfony/validator": "^6.4 || ^7.0"
+    },
+    "require-dev": {
+        "nyholm/symfony-bundle-test": "^2.0@dev",
+        "paragonie/hidden-string": "^2.0",
+        "phpspec/prophecy-phpunit": "^2.1",
+        "phpunit/phpunit": "^10.4.2",
+        "rollerscapes/standards": "^1.0",
+        "symfony/framework-bundle": "^7.0",
+        "symfony/http-client": "^6.4 || ^7.0",
+        "symfony/phpunit-bridge": "^6.4 || ^7.0"
+    },
+    "conflict": {
+        "paragonie/hidden-string": "<2.0"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Rollerworks\\Component\\X509Validator\\Symfony\\": "src/"
+        },
+        "exclude-from-classmap": [
+            "tests/"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Rollerworks\\Component\\X509Validator\\Tests\\Symfony\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "1.0-dev"
+        }
+    }
+}

@@ -12,13 +12,13 @@
     ],
     "require": {
         "php": "^8.2",
-        "rollerworks/x509-validator": "^0.2.1",
+        "rollerworks/x509-validator": "^0.2.1 || ^0.3",
         "symfony/config": "^6.4 || ^7.0",
         "symfony/translation": "^6.4 || ^7.0",
         "symfony/validator": "^6.4 || ^7.0"
     },
     "require-dev": {
-        "nyholm/symfony-bundle-test": "^2.0@dev",
+        "nyholm/symfony-bundle-test": "^2.0",
         "paragonie/hidden-string": "^2.0",
         "phpspec/prophecy-phpunit": "^2.1",
         "phpunit/phpunit": "^10.4.2",

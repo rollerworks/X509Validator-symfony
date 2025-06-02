@@ -28,7 +28,8 @@ final class X509SupportValidator extends TLSCertificateValidator
     public function __construct(
         private readonly CertificateValidator $certificateValidator,
         private readonly ContainerInterface $container,
-    ) {}
+    ) {
+    }
 
     protected function checkConstraintType(Constraint $constraint): void
     {
@@ -67,7 +68,7 @@ final class X509SupportValidator extends TLSCertificateValidator
 
         if (! \is_callable($callback)) {
             throw new ConstraintDefinitionException(
-                sprintf(
+                \sprintf(
                     'Callback %s targeted by X509Support constraint is not callable.',
                     json_encode([\is_object($callback[0]) ? $callback[0]::class : $callback[0], $callback[1]], \JSON_THROW_ON_ERROR),
                 )
@@ -87,7 +88,7 @@ final class X509SupportValidator extends TLSCertificateValidator
             $service = $this->container->get($id);
         } catch (\Throwable $e) {
             throw new ConstraintDefinitionException(
-                sprintf(
+                \sprintf(
                     'Service %s targeted by X509Support constraint %s.',
                     json_encode($id, \JSON_THROW_ON_ERROR),
                     ! $this->container->has($id) ? 'does not exist' : 'is invalid'
@@ -99,7 +100,7 @@ final class X509SupportValidator extends TLSCertificateValidator
 
         if (! \is_callable([$service, $method])) {
             throw new ConstraintDefinitionException(
-                sprintf(
+                \sprintf(
                     'Callback %s (with class %s) targeted by X509Support constraint is not callable.',
                     json_encode(['@' . $id, $method], \JSON_THROW_ON_ERROR),
                     json_encode($service::class, \JSON_THROW_ON_ERROR),

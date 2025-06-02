@@ -28,6 +28,7 @@ final class X509CertificateBundle
     public function __construct(
         public string $certificate,
         public HiddenString | string | null $privateKey = null,
-        public array $caList = []
-    ) {}
+        public array $caList = [],
+    ) {
+    }
 }

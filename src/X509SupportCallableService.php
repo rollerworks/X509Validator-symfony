@@ -16,5 +16,7 @@ namespace Rollerworks\Component\X509Validator\Symfony;
 #[\Attribute(\Attribute::TARGET_CLASS)]
 final class X509SupportCallableService
 {
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 }

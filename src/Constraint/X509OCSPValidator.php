@@ -22,7 +22,9 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
  */
 final class X509OCSPValidator extends TLSCertificateValidator
 {
-    public function __construct(private readonly OCSPValidator $OCSPValidator) {}
+    public function __construct(private readonly OCSPValidator $OCSPValidator)
+    {
+    }
 
     protected function checkConstraintType(Constraint $constraint): void
     {

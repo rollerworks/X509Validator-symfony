@@ -31,9 +31,9 @@ final class X509Purpose extends Constraint
     public const PURPOSE_SSL_SERVER = CertificateValidator::PURPOSE_SSL_SERVER;
 
     /** @param array<array-key, string> $purposes */
-    public function __construct(public array $purposes, mixed $options = null, array $groups = null, mixed $payload = null)
+    public function __construct(public array $purposes, mixed $options = null, ?array $groups = null, mixed $payload = null)
     {
-        if (count($purposes) > 0) {
+        if (\count($purposes) > 0) {
             $options['purposes'] = $purposes;
         }
 

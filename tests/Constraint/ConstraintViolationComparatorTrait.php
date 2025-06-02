@@ -80,7 +80,7 @@ final class ConstraintViolationComparator extends Comparator
             $actual,
             $exportedExpected = $exporter->export($expected),
             $exportedActual = $exporter->export($actual),
-            sprintf(
+            \sprintf(
                 'Failed asserting that %s matches expected %s.',
                 $exportedActual,
                 $exportedExpected

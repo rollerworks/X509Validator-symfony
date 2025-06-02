@@ -30,7 +30,7 @@ use Symfony\Component\Validator\Constraint;
 #[\Attribute(\Attribute::TARGET_PROPERTY | \Attribute::TARGET_METHOD | \Attribute::IS_REPEATABLE)]
 final class X509Certificate extends Constraint
 {
-    public function __construct(public bool $allowWeakAlgorithm = false, mixed $options = null, array $groups = null, mixed $payload = null)
+    public function __construct(public bool $allowWeakAlgorithm = false, mixed $options = null, ?array $groups = null, mixed $payload = null)
     {
         parent::__construct($options, $groups, $payload);
     }

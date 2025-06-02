@@ -58,7 +58,7 @@ abstract class TLSCertificateValidator extends ConstraintValidator
 
         foreach ($arguments as $key => $v) {
             unset($arguments[$key]);
-            $arguments[sprintf('%s', $key)] = $v;
+            $arguments[\sprintf('%s', $key)] = $v;
         }
 
         return $arguments;

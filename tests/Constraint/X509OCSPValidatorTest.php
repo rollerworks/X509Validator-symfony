@@ -146,7 +146,7 @@ final class X509OCSPValidatorTest extends X509ValidatorTestCase
                         YSEY1QSteDwsOoBrp+uvFRTp2InBuThs4pFsiv9kuXclVzDAGySj4dzp30d8tbQk
                         CAUw7C29C79Fv1C5qfPrmAESrciIxpg0X40KPMbp1ZWVbd4=
                         -----END CERTIFICATE-----
-                        CERT
+                        CERT,
                 ]
             ),
             $constraint

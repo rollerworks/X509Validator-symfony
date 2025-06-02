@@ -259,17 +259,17 @@ final class X509SupportValidatorTest extends X509ValidatorTestCase
     {
         yield 'class method not callable' => [
             [MockEntityClass::class, '__nope'],
-            sprintf('Callback "[%s,"__nope"]" targeted by X509Support constraint is expected to be a callable, a string or an array with index 0 being an object or string.', json_encode(MockEntityClass::class)),
+            \sprintf('Callback "[%s,"__nope"]" targeted by X509Support constraint is expected to be a callable, a string or an array with index 0 being an object or string.', json_encode(MockEntityClass::class)),
         ];
 
         yield 'object method not callable' => [
             '__nope',
-            sprintf('Callback [%s,"__nope"] targeted by X509Support constraint is not callable.', json_encode(MockEntityClass::class)),
+            \sprintf('Callback [%s,"__nope"] targeted by X509Support constraint is not callable.', json_encode(MockEntityClass::class)),
         ];
 
         yield 'missing index 0' => [
             [MockEntityClass::class],
-            sprintf('Callback [%s] targeted by X509Support constraint is expected to be a callable, a string or an array with indexes 0 and 1.', json_encode(MockEntityClass::class)),
+            \sprintf('Callback [%s] targeted by X509Support constraint is expected to be a callable, a string or an array with indexes 0 and 1.', json_encode(MockEntityClass::class)),
         ];
 
         yield 'missing index 1' => [
@@ -289,7 +289,7 @@ final class X509SupportValidatorTest extends X509ValidatorTestCase
 
         yield 'not callable service method' => [
             ['@X509StubValidator', '__nope'],
-            sprintf(
+            \sprintf(
                 'Callback %s (with class %s) targeted by X509Support constraint is not callable.',
                 json_encode(['@X509StubValidator', '__nope']),
                 json_encode(X509StubValidator::class)
@@ -315,7 +315,9 @@ final class X509SupportValidatorTest extends X509ValidatorTestCase
  */
 final class X509SupportStubViolation extends Violation
 {
-    public function __construct(private readonly string $expected, private readonly string $provided) {}
+    public function __construct(private readonly string $expected, private readonly string $provided)
+    {
+    }
 
     public function getTranslatorMsg(): string
     {

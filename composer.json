@@ -11,21 +11,21 @@
         }
     ],
     "require": {
-        "php": "^8.2",
-        "rollerworks/x509-validator": "^0.2.1 || ^0.3",
-        "symfony/config": "^7.4 || ^8.0",
-        "symfony/translation": "^7.4 || ^8.0",
-        "symfony/validator": "^7.4 || ^8.0"
+        "php": "^8.4",
+        "rollerworks/x509-validator": "^0.3",
+        "symfony/config": "^8.0",
+        "symfony/translation": "^8.0",
+        "symfony/validator": "^8.0"
     },
     "require-dev": {
-        "nyholm/symfony-bundle-test": "^2.0 || ^3.1",
+        "nyholm/symfony-bundle-test": "^3.1",
         "paragonie/hidden-string": "^2.0",
         "phpspec/prophecy-phpunit": "^2.1",
         "phpunit/phpunit": "^10.4.2",
         "rollerscapes/standards": "^1.0",
-        "symfony/framework-bundle": "^7.4 || ^8.0",
-        "symfony/http-client": "^7.4 || ^8.0",
-        "symfony/phpunit-bridge": "^7.4 || ^8.0"
+        "symfony/framework-bundle": "^8.0",
+        "symfony/http-client": "^8.0",
+        "symfony/phpunit-bridge": "^8.0"
     },
     "conflict": {
         "paragonie/hidden-string": "<2.0"

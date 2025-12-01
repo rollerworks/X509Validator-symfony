@@ -16,10 +16,6 @@ namespace Rollerworks\Component\X509Validator\Symfony\Constraint;
 use Rollerworks\Component\X509Validator\CertificateValidator;
 use Symfony\Component\Validator\Constraint;
 
-/**
- * @Annotation
- * @Target({"PROPERTY", "METHOD", "ANNOTATION"})
- */
 #[\Attribute(\Attribute::TARGET_PROPERTY | \Attribute::TARGET_METHOD | \Attribute::IS_REPEATABLE)]
 final class X509Purpose extends Constraint
 {
@@ -30,24 +26,10 @@ final class X509Purpose extends Constraint
     public const PURPOSE_SSL_CLIENT = CertificateValidator::PURPOSE_SSL_CLIENT;
     public const PURPOSE_SSL_SERVER = CertificateValidator::PURPOSE_SSL_SERVER;
 
-    /** @param array<array-key, string> $purposes */
-    public function __construct(public array $purposes, mixed $options = null, ?array $groups = null, mixed $payload = null)
+    /** @param string[] $purposes */
+    public function __construct(public array $purposes, ?array $groups = null, mixed $payload = null)
     {
-        if (\count($purposes) > 0) {
-            $options['purposes'] = $purposes;
-        }
-
-        parent::__construct($options, $groups, $payload);
-    }
-
-    public function getDefaultOption(): string
-    {
-        return 'purposes';
-    }
-
-    public function getRequiredOptions(): array
-    {
-        return ['purposes'];
+        parent::__construct(null, $groups, $payload);
     }
 
     public function getTargets(): array | string

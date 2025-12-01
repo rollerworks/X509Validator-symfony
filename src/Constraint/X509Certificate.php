@@ -23,16 +23,13 @@ use Symfony\Component\Validator\Constraint;
  * * Strong signature-type is used (less than SHA256)
  *   (can be disabled with 'allowWeakAlgorithm' option);
  * * Provided CAs chain is complete;
- *
- * @Annotation
- * @Target({"PROPERTY", "METHOD", "ANNOTATION"})
  */
 #[\Attribute(\Attribute::TARGET_PROPERTY | \Attribute::TARGET_METHOD | \Attribute::IS_REPEATABLE)]
 final class X509Certificate extends Constraint
 {
-    public function __construct(public bool $allowWeakAlgorithm = false, mixed $options = null, ?array $groups = null, mixed $payload = null)
+    public function __construct(public bool $allowWeakAlgorithm = false, ?array $groups = null, mixed $payload = null)
     {
-        parent::__construct($options, $groups, $payload);
+        parent::__construct(null, $groups, $payload);
     }
 
     public function getTargets(): array | string

@@ -1,0 +1,1 @@
+{"schema":1,"id":3,"category":"refactor","title":"Drop support for Symfony 7","flags":["bc-break"],"authors":["sstok"]}

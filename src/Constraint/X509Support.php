@@ -54,6 +54,9 @@ final class X509Support extends Constraint
 
         parent::__construct($options, $groups, $payload);
 
+        // To be removed when support for Symfony 7.4 is dropped
+        $this->callback = $options['callback'];
+
         if (\is_callable($this->callback) || \is_string($this->callback)) {
             return;
         }

@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Rollerworks\Component\X509Validator\Symfony\Constraint;
 
 use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\Exception\MissingOptionsException;
 
 /**
  * @Annotation
@@ -23,6 +24,23 @@ use Symfony\Component\Validator\Constraint;
 final class X509HostnamePattern extends Constraint
 {
     public string $pattern;
+
+    public function __construct(mixed $options = null, ?array $groups = null, mixed $payload = null)
+    {
+        parent::__construct($options, $groups, $payload);
+
+        if (\is_string($options)) {
+            $this->pattern = $options;
+
+            return;
+        }
+
+        if (! \is_array($options) || ! isset($options['pattern'])) {
+            throw new MissingOptionsException(\sprintf('The options "pattern" must be set for constraint "%s".', self::class), ['pattern']);
+        }
+
+        $this->pattern = $options['pattern'];
+    }
 
     public function getDefaultOption(): string
     {

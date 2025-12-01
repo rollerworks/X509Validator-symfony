@@ -46,7 +46,7 @@ final class BundleInitializationTest extends KernelTestCase
         $kernel->addTestBundle(RollerworksPdbBundle::class);
 
         $kernel->addTestCompilerPass(new class implements CompilerPassInterface {
-            public function process(ContainerBuilder $container)
+            public function process(ContainerBuilder $container): void
             {
                 $container->findDefinition('translator')->setPublic(true);
                 $container->findDefinition('validator')->setPublic(true);

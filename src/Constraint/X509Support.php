@@ -21,41 +21,41 @@ use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
  * Execute the callback on the CertificateValidator::validateCertificateSupport().
  *
  * @see CertificateValidator::validateCertificateSupport()
- *
- * @Annotation
- * @Target({"PROPERTY", "METHOD", "ANNOTATION"})
  */
 #[\Attribute(\Attribute::TARGET_PROPERTY | \Attribute::TARGET_METHOD | \Attribute::IS_REPEATABLE)]
 final class X509Support extends Constraint
 {
     /**
-     * The callback receives the information as ({X509Info object}, "$certificate", {CertificateValidator}).
-     *
-     * @var array{0: string|object, 1: string}|string|\Closure callable/method-name (on the current object)
+     * @var \Closure|array{0: string|object, 1: string}|string
      */
-    public array | string | \Closure $callback;
+    public \Closure | array | string $callback;
 
     /**
-     * @param array{0: string|object, 1: string}|string|null $callback callable/method-name (on the current object)
-     * @param array<string, mixed>                           $options
+     * Constructor.
+     *
+     * The $callback parameter can be either one of the following:
+     *
+     * - A Closure
+     * - A method name (on the current object)
+     * - A self invoking service-id as '@app.x509.custom_validator'
+     * - A callback array with indexes as `['ClassName', 'methodName']`
+     * - A callback array with indexes as `[{object}, 'methodName']`
+     * - A callback array with indexes as `['@serviceId', 'methodName']` for accessible services
+     *   (service id must be a string)
+     *
+     * The callback receives the information as ({X509Info object}, "$certificate", {CertificateValidator}, $root).
+     * The '$root' callback-argument refers to the ValidatorContext (the object/value that is validated).
+     *
+     * **Note:** Service callbacks depend a ServiceContainer, which is implementation specific,
+     * check the documentation of the implementation you are using.
+     *
+     * @param \Closure|array{0: string|object, 1: string}|string $callback
      */
-    public function __construct(\Closure | array | string | null $callback = null, ?array $groups = null, mixed $payload = null, array $options = [])
+    public function __construct(\Closure | array | string $callback, ?array $groups = null, mixed $payload = null)
     {
-        // Invocation through attributes with an array parameter only
-        if (\is_array($callback) && \count($callback) === 1 && isset($callback['value'])) {
-            $callback = $callback['value'];
-        }
+        parent::__construct(null, $groups, $payload);
 
-        if (! \is_array($callback) || (! isset($callback['callback']) && ! isset($callback['groups']) && ! isset($callback['payload']))) {
-            $options['callback'] = $callback;
-        } else {
-            $options = array_merge($callback, $options);
-        }
-
-        parent::__construct($options, $groups, $payload);
-
-        // To be removed when support for Symfony 7.4 is dropped
-        $this->callback = $options['callback'];
+        $this->callback = $callback;
 
         if (\is_callable($this->callback) || \is_string($this->callback)) {
             return;
@@ -79,16 +79,6 @@ final class X509Support extends Constraint
                 )
             );
         }
-    }
-
-    public function getDefaultOption(): string
-    {
-        return 'callback';
-    }
-
-    public function getRequiredOptions(): array
-    {
-        return ['callback'];
     }
 
     public function getTargets(): array | string

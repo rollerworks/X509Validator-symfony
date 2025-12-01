@@ -62,7 +62,7 @@ final class X509SupportValidator extends TLSCertificateValidator
 
         if (\is_string($callback)) {
             $callback = [$object, $callback];
-        } elseif (\is_string($callback[0]) && $callback[0][0] === '@') {
+        } elseif (\is_string($callback[0]) && $callback[0][0] === '@') { // [@serviceId, method]
             $callback = $this->getService($callback[0], $callback[1]);
         }
 

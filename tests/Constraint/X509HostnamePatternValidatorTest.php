@@ -27,14 +27,14 @@ final class X509HostnamePatternValidatorTest extends X509ValidatorTestCase
     #[Test]
     public function it_ignores_null(): void
     {
-        $this->validator->validate(null, new X509HostnamePattern(['pattern' => '*example.com']));
+        $this->validator->validate(null, new X509HostnamePattern(pattern: '*example.com'));
         $this->assertNoViolation();
     }
 
     #[Test]
     public function it_fails_when_hostname_is_not_supported(): void
     {
-        $constraint = new X509HostnamePattern(['pattern' => '*example.com']);
+        $constraint = new X509HostnamePattern(pattern: '*example.com');
 
         $this->validator->validate(
             new X509CertificateBundle(

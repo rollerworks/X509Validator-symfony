@@ -110,6 +110,8 @@ final class BundleInitializationTest extends KernelTestCase
     #[Test]
     public function it_works_with_ocsp_validator(): void
     {
+        $this->markTestSkipped('OCSP certificate needs updating.');
+
         $kernel = self::bootKernel();
         $container = $kernel->getContainer();
 
@@ -242,5 +244,14 @@ final class BundleInitializationTest extends KernelTestCase
                 'en'
             )
         );
+    }
+
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+
+        while (get_exception_handler() !== null) {
+            restore_exception_handler();
+        }
     }
 }

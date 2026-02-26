@@ -21,7 +21,7 @@
         "nyholm/symfony-bundle-test": "^3.1",
         "paragonie/hidden-string": "^2.0",
         "phpspec/prophecy-phpunit": "^2.1",
-        "phpunit/phpunit": "^10.4.2",
+        "phpunit/phpunit": "^13.0",
         "rollerscapes/standards": "^1.0",
         "symfony/framework-bundle": "^8.0",
         "symfony/http-client": "^8.0",
